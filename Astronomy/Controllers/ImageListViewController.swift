@@ -95,6 +95,9 @@ extension ImageListViewController {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         networkImageOperations.resumeAllOperations()
+        
+        let indexPaths = collectionView.indexPathsForVisibleItems
+        collectionView.reloadItems(at: indexPaths)
     }
     
     private func startDownloadForVisibleCells() {

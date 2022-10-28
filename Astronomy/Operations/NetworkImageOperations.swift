@@ -22,6 +22,11 @@ class NetworkImageOperations {
     
     func suspendAllOperations() {
         downloadQueue.isSuspended = true
+        
+        if downloadQueue.operationCount > 200 {
+            downloadQueue.cancelAllOperations()
+            downloadsInProgress.removeAll()
+        }
     }
     
     func resumeAllOperations() {
